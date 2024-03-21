@@ -1,6 +1,6 @@
 package com.example.sphere.model;
 
-import com.example.sphere.exceptions.InvalidSphereRadius;
+import com.example.sphere.exception.InvalidSphereRadius;
 import com.example.sphere.service.SphereService;
 import org.junit.jupiter.api.Test;
 

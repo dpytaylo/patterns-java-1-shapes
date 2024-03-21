@@ -1,8 +1,6 @@
 package com.example.sphere.model;
 
-import com.example.sphere.utils.AutoIncrement;
-
-import java.util.Objects;
+import com.example.sphere.util.AutoIncrement;
 
 public class Point {
     private final long id = AutoIncrement.nextId();

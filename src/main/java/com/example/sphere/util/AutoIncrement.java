@@ -1,4 +1,4 @@
-package com.example.sphere.utils;
+package com.example.sphere.util;
 
 public class AutoIncrement {
     private static long ID = 0;

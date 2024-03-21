@@ -1,4 +1,4 @@
-package com.example.sphere.exceptions;
+package com.example.sphere.exception;
 
 public class InvalidSphereRadius extends Exception {
     public InvalidSphereRadius() {

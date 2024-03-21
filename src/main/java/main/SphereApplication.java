@@ -1,6 +1,6 @@
-package com.example.sphere;
+package main;
 
-import com.example.sphere.exceptions.InvalidSphereRadius;
+import com.example.sphere.exception.InvalidSphereRadius;
 import com.example.sphere.model.Sphere;
 import com.example.sphere.model.Warehouse;
 import org.apache.logging.log4j.LogManager;

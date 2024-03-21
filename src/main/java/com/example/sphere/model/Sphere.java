@@ -1,9 +1,9 @@
 package com.example.sphere.model;
 
-import com.example.sphere.exceptions.InvalidSphereRadius;
+import com.example.sphere.exception.InvalidSphereRadius;
 import com.example.sphere.observer.Observable;
 import com.example.sphere.observer.SphereObserver;
-import com.example.sphere.utils.AutoIncrement;
+import com.example.sphere.util.AutoIncrement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
