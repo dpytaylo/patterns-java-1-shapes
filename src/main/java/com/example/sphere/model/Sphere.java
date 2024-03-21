@@ -1,59 +1,28 @@
 package com.example.sphere.model;
 
-import com.example.sphere.exception.InvalidSphereRadiusException;
+import com.example.sphere.exception.InvalidSphereException;
 import com.example.sphere.observer.Observable;
 import com.example.sphere.observer.SphereObserver;
 import com.example.sphere.util.AutoIncrement;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Sphere implements Observable {
-    private static final Logger logger = LogManager.getLogger(Sphere.class);
     private final long id = AutoIncrement.nextId();
     private Point position;
     private double radius;
     private SphereObserver observer = new SphereObserver();
 
-    public Sphere(Point position, double radius) throws InvalidSphereRadiusException {
+    public Sphere(Point position, double radius) throws InvalidSphereException {
         this.position = position;
         setRadius(radius);
-    }
-
-    public static ArrayList<Sphere> parseSpheres(List<String> lines) {
-        var spheres = new ArrayList<Sphere>();
-
-        for (String line : lines) {
-            try {
-                var parts = line.split(";");
-
-                var x = Double.parseDouble(parts[0]);
-                var y = Double.parseDouble(parts[1]);
-                var z = Double.parseDouble(parts[2]);
-
-                var radius = Double.parseDouble(parts[3]);
-
-                var position = new Point(x, y, z);
-                var sphere = new Sphere(position, radius);
-
-                spheres.add(sphere);
-            } catch (NumberFormatException | InvalidSphereRadiusException e) {
-                logger.error("Failed to parse a sphere", e);
-            }
-        }
-
-        return spheres;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setRadius(double radius) throws InvalidSphereRadiusException {
+    public void setRadius(double radius) throws InvalidSphereException {
         if (radius < 0.0) {
-            throw new InvalidSphereRadiusException();
+            throw new InvalidSphereException("Invalid radius: " + radius + " (expected: >= 0.0)");
         }
 
         this.radius = radius;

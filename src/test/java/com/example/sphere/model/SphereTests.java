@@ -1,6 +1,6 @@
 package com.example.sphere.model;
 
-import com.example.sphere.exception.InvalidSphereRadiusException;
+import com.example.sphere.exception.InvalidSphereException;
 import com.example.sphere.service.SphereService;
 import org.junit.jupiter.api.Test;
 
@@ -8,18 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SphereTests {
     @Test
-    void testIsValidSphere() throws InvalidSphereRadiusException {
-        var sphereService = new SphereService();
+    void testIsValidSphere() throws InvalidSphereException {
+        new Sphere(new Point(), 12.0);
 
-        var sphere = new Sphere(new Point(), 12.0);
-
-        assertThrowsExactly(InvalidSphereRadiusException.class, () -> {
-            var sphere2 = new Sphere(new Point(), -12.0);
-        });
+        assertThrowsExactly(InvalidSphereException.class, () -> new Sphere(new Point(), -12.0));
     }
 
     @Test
-    void testContainsPoint() throws InvalidSphereRadiusException {
+    void testContainsPoint() throws InvalidSphereException {
         var sphereService = new SphereService();
 
         var sphere = new Sphere(new Point(), 12.0);
@@ -31,7 +27,7 @@ public class SphereTests {
     }
 
     @Test
-    void testArea() throws InvalidSphereRadiusException {
+    void testArea() throws InvalidSphereException {
         var sphereService = new SphereService();
 
         var sphere = new Sphere(new Point(), 12.0);
