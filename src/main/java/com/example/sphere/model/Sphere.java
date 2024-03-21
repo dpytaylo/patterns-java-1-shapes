@@ -4,11 +4,14 @@ import com.example.sphere.exceptions.InvalidSphereRadius;
 import com.example.sphere.observer.Observable;
 import com.example.sphere.observer.SphereObserver;
 import com.example.sphere.utils.AutoIncrement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Sphere implements Observable {
+    private static final Logger logger = LogManager.getLogger(Sphere.class);
     private final long id = AutoIncrement.nextId();
     private Point position;
     private double radius;
@@ -36,7 +39,9 @@ public class Sphere implements Observable {
                 var sphere = new Sphere(position, radius);
 
                 spheres.add(sphere);
-            } catch (Exception ignored) {}
+            } catch (NumberFormatException | InvalidSphereRadius e) {
+                logger.error("Failed to parse a sphere", e);
+            }
         }
 
         return spheres;
