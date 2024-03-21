@@ -1,6 +1,6 @@
-package main;
+package com.example.sphere.main;
 
-import com.example.sphere.exception.InvalidSphereRadius;
+import com.example.sphere.exception.InvalidSphereRadiusException;
 import com.example.sphere.model.Sphere;
 import com.example.sphere.model.Warehouse;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +15,7 @@ public class SphereApplication {
     private static final Logger logger = LogManager.getLogger(SphereApplication.class);
     private static final String SPHERE_FILE = "src/main/resources/spheres.txt";
 
-    public static void main(String[] args) throws InvalidSphereRadius {
+    public static void main(String[] args) throws InvalidSphereRadiusException {
         List<String> lines;
         try {
             lines = Files.readAllLines(Paths.get(SPHERE_FILE));

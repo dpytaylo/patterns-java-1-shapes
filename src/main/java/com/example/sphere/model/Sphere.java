@@ -1,6 +1,6 @@
 package com.example.sphere.model;
 
-import com.example.sphere.exception.InvalidSphereRadius;
+import com.example.sphere.exception.InvalidSphereRadiusException;
 import com.example.sphere.observer.Observable;
 import com.example.sphere.observer.SphereObserver;
 import com.example.sphere.util.AutoIncrement;
@@ -17,7 +17,7 @@ public class Sphere implements Observable {
     private double radius;
     private SphereObserver observer = new SphereObserver();
 
-    public Sphere(Point position, double radius) throws InvalidSphereRadius {
+    public Sphere(Point position, double radius) throws InvalidSphereRadiusException {
         this.position = position;
         setRadius(radius);
     }
@@ -39,7 +39,7 @@ public class Sphere implements Observable {
                 var sphere = new Sphere(position, radius);
 
                 spheres.add(sphere);
-            } catch (NumberFormatException | InvalidSphereRadius e) {
+            } catch (NumberFormatException | InvalidSphereRadiusException e) {
                 logger.error("Failed to parse a sphere", e);
             }
         }
@@ -51,9 +51,9 @@ public class Sphere implements Observable {
         return id;
     }
 
-    public void setRadius(double radius) throws InvalidSphereRadius {
+    public void setRadius(double radius) throws InvalidSphereRadiusException {
         if (radius < 0.0) {
-            throw new InvalidSphereRadius();
+            throw new InvalidSphereRadiusException();
         }
 
         this.radius = radius;

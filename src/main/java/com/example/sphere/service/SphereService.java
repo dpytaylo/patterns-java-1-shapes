@@ -13,7 +13,7 @@ public class SphereService {
             && Math.abs(position.getZ() - point.getZ()) <= radius;
     }
 
-    public double getArea(Sphere sphere) {
+    public double calculateArea(Sphere sphere) {
         return 4.0 * Math.PI * Math.pow(sphere.getRadius(), 2.0);
     }
 }
