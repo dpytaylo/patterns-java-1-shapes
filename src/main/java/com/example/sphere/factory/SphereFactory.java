@@ -14,13 +14,14 @@ import java.util.List;
 
 public class SphereFactory {
     private static final Logger logger = LogManager.getLogger(Sphere.class);
+    private static final String PARTS_SEPARATOR = ";";
 
     public ArrayList<Sphere> parseSpheres(List<String> lines) {
         var spheres = new ArrayList<Sphere>();
 
         for (String line : lines) {
             try {
-                var parts = line.split(";");
+                var parts = line.split(PARTS_SEPARATOR);
 
                 var x = Double.parseDouble(parts[0]);
                 var y = Double.parseDouble(parts[1]);
