@@ -8,4 +8,8 @@ public class InvalidSphereException extends Exception {
     public InvalidSphereException(String exception) {
         super("Invalid sphere: " + exception);
     }
+
+    public InvalidSphereException(Exception exception) {
+        super("Invalid sphere: ", exception);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.sphere.factory;
 
 import com.example.sphere.exception.InvalidSphereException;
+import com.example.sphere.exception.SphereFactoryException;
 import com.example.sphere.model.Point;
 import com.example.sphere.model.Sphere;
 import org.apache.logging.log4j.LogManager;
@@ -14,14 +15,14 @@ import java.util.List;
 
 public class SphereFactory {
     private static final Logger logger = LogManager.getLogger(Sphere.class);
-    private static final String PARTS_SEPARATOR = ";";
+    private static final String PARTS_SEPERATOR = ";";
 
     public ArrayList<Sphere> parseSpheres(List<String> lines) {
         var spheres = new ArrayList<Sphere>();
 
         for (String line : lines) {
             try {
-                var parts = line.split(PARTS_SEPARATOR);
+                var parts = line.split(PARTS_SEPERATOR);
 
                 var x = Double.parseDouble(parts[0]);
                 var y = Double.parseDouble(parts[1]);
@@ -41,8 +42,14 @@ public class SphereFactory {
         return spheres;
     }
 
-    public ArrayList<Sphere> parseSpheresFromFile(String filename) throws IOException {
-        var lines = Files.readAllLines(Paths.get(filename));
+    public ArrayList<Sphere> parseSpheresFromFile(String filename) throws SphereFactoryException {
+        List<String> lines;
+        try {
+            lines = Files.readAllLines(Paths.get(filename));
+        } catch (IOException e) {
+            throw new SphereFactoryException(e);
+        }
+
         return parseSpheres(lines);
     }
 }
